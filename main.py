@@ -155,7 +155,9 @@ if __name__ == "__main__":
          for row in next_state:
              print(row)
          if iteration == 100: #early stop at 100
-             exit()
+             print()
+             print("No Solution Found!!!!")
+             break 
          iteration += 1
          
     print("\nGoal:")
@@ -168,4 +170,6 @@ if __name__ == "__main__":
 
     print("Generated nodes: " + str(expanded_node_count))
     print("Expanded nodes: " + str(iteration))
-
+    print("\nNo Solution Found!!!!")
+    print("Distance from goal: " + str(score))
+    print("\nNo Solution Found!!!!")
