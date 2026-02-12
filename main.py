@@ -2,6 +2,7 @@ import copy
 
 expanded_node_count = 0
 
+# read from our input files
 def read_two_grids(filename):
     with open(filename, "r") as f:
         lines = [line.strip() for line in f]
@@ -36,6 +37,7 @@ def swap(input_grid, x, y, n_x, n_y):
         return arr
     return None
 
+# takes in a state and returns all possible states
 def make_future_states(input_grid):
     global expanded_node_count
     ret = []
@@ -47,6 +49,9 @@ def make_future_states(input_grid):
                 x = i
                 y = j
                 break
+
+    # the x and y are switched up
+    # 	sorry about that
 
     #up
     up = swap(input_grid, x, y, x - 1, y)
@@ -82,6 +87,7 @@ def find_val(val, goal_g):
 
     return i, j
 
+# computes the manhattan distance for each value in our puzzle
 def compute_score(curr, goal_g):
     total_score = 0 
     for i in range(0, 3):
@@ -93,6 +99,7 @@ def compute_score(curr, goal_g):
             total_score += abs(i - x) + abs(j - y)
     return total_score
 
+# chooses the state with the best score
 def compute_next_state(future_states, goal_g):
     scores = []
     indx = 0 
@@ -146,8 +153,7 @@ if __name__ == "__main__":
          print("Step #" + str(iteration))
          for row in next_state:
              print(row)
-         #print(score)
-         if iteration == 100:
+         if iteration == 100: #early stop at 100
              exit()
          iteration += 1
          
