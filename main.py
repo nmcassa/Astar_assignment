@@ -146,8 +146,9 @@ if __name__ == "__main__":
     next_state = copy.deepcopy(input_grid)
 
     score = 99
-    iteration = 1
+    iteration = 0
     while score > 0:
+         iteration += 1
          next_state = A_star_iter(next_state, goal_grid)
          score = compute_score(next_state, goal_grid)
          print()
@@ -158,7 +159,6 @@ if __name__ == "__main__":
              print()
              print("No Solution Found!!!!")
              break 
-         iteration += 1
          
     print("\nGoal:")
     for row in goal_grid:
@@ -170,6 +170,8 @@ if __name__ == "__main__":
 
     print("Generated nodes: " + str(expanded_node_count))
     print("Expanded nodes: " + str(iteration))
-    print("\nNo Solution Found!!!!")
+    if iteration == 100:
+        print("\nNo Solution Found!!!!")
     print("Distance from goal: " + str(score))
-    print("\nNo Solution Found!!!!")
+    if iteration == 100:
+        print("\nNo Solution Found!!!!")
